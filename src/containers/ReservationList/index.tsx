@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { Flex } from "@chakra-ui/react";
 
 import Header from "./components/Header";
@@ -24,4 +24,4 @@ const ReservationList = () => {
   );
 };
 
-export default ReservationList;
+export default memo(ReservationList);

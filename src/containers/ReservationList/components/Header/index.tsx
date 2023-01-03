@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Flex, Button, Text, Center } from "@chakra-ui/react";
 
 import { monthNames } from "containers/ReservationList/contants";
@@ -26,4 +26,4 @@ type HeaderProps = {
   onToday: () => void;
 };
 
-export default Header;
+export default memo(Header);

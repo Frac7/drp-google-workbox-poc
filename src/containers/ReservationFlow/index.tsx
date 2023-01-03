@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 
 const ReservationFlow = () => {
   return <div>ReservationFlow</div>;
 };
 
-export default ReservationFlow;
+export default memo(ReservationFlow);
