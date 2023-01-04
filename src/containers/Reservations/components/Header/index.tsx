@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Flex, Button, Text, Center } from "@chakra-ui/react";
 
-import { monthNames } from "containers/ReservationList/contants";
+import { monthNames } from "containers/Reservations/contants";
 
 const Header = ({ month, onPrev, onNext, onToday }: HeaderProps) => {
   return (

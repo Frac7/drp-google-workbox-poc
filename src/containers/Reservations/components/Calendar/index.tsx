@@ -9,7 +9,7 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 
-import { DAYS_IN_A_WEEK, dayNames } from "containers/ReservationList/contants";
+import { DAYS_IN_A_WEEK, dayNames } from "containers/Reservations/contants";
 
 const Calendar = ({ month }: CalendarProps) => {
   const weeks = useMemo(() => {

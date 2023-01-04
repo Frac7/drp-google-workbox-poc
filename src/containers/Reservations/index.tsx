@@ -6,7 +6,7 @@ import Calendar from "./components/Calendar";
 
 import { MONTHS } from "./contants";
 
-const ReservationList = () => {
+const Reservations = () => {
   const [month, setMonth] = useState(0);
   const onPrev = () =>
     setMonth((currentMonth: number) =>
@@ -24,4 +24,4 @@ const ReservationList = () => {
   );
 };
 
-export default memo(ReservationList);
+export default memo(Reservations);
