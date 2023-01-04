@@ -1,5 +1,5 @@
 import React, { useMemo, memo } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   Table,
   Thead,
@@ -14,9 +14,20 @@ import {
 import { DAYS_IN_A_WEEK, dayNames } from "containers/Reservations/constants";
 import { CalendarProps } from "containers/Reservations/types";
 
+import { routes } from "containers/App/constants";
+
 const Calendar = ({ month, reservations }: CalendarProps) => {
-  const location = useLocation();
-  const pathname = location.pathname;
+  const history = useHistory();
+  const handleBooking = (day: number) => {
+    const date = new Date();
+    date.setDate(day);
+    date.setMonth(month);
+
+    history.push(routes.BOOK, { date });
+  };
+  const handleShowReservation = (id: number) => {
+    history.push(`${routes.RESERVATIONS}/${id}`);
+  };
 
   const weeks = useMemo(() => {
     const today = new Date();
@@ -59,13 +70,19 @@ const Calendar = ({ month, reservations }: CalendarProps) => {
             <Tr>
               {days.map((day) => (
                 <Td>
-                  {day && reservations[day] ? (
-                    <Link to={`${pathname}/${reservations[day]}`}>
-                      <Text color="orange">{day}</Text>
-                    </Link>
-                  ) : (
-                    <Text>{day}</Text>
-                  )}
+                  {day ? (
+                    <Text
+                      cursor="pointer"
+                      onClick={
+                        reservations[day]
+                          ? () => handleShowReservation(reservations[day])
+                          : () => handleBooking(day)
+                      }
+                      color={reservations[day] ? "orange" : "unset"}
+                    >
+                      {day}
+                    </Text>
+                  ) : null}
                 </Td>
               ))}
             </Tr>

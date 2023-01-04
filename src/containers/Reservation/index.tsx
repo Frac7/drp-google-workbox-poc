@@ -14,6 +14,8 @@ import {
   Box,
 } from "@chakra-ui/react";
 
+import { ReservationRouteParams } from "./types";
+
 const Reservation = () => {
   const params: ReservationRouteParams = useParams();
   const id = params.id;
@@ -25,7 +27,7 @@ const Reservation = () => {
     <Flex m="auto" w={{ md: "100%", lg: "50%" }} direction="column">
       <Card size="lg">
         <CardHeader>
-          <Heading size="md">Prenotazione della scrivania</Heading>
+          <Heading size="md">Scrivania prenotata</Heading>
         </CardHeader>
         <CardBody>
           <Stack divider={<StackDivider />} spacing="4">
@@ -55,10 +57,6 @@ const Reservation = () => {
       </Card>
     </Flex>
   );
-};
-
-type ReservationRouteParams = {
-  id: string;
 };
 
 export default memo(Reservation);
