@@ -1,4 +1,5 @@
 export const routes = {
   RESERVATION_FLOW: "/book",
-  RESERVATIONS: "/",
+  RESERVATIONS: "/reservations",
+  RESERVATION: "/reservations/:id",
 };

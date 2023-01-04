@@ -1,4 +1,5 @@
 import React, { useMemo, memo } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
   Table,
   Thead,
@@ -12,6 +13,9 @@ import {
 import { DAYS_IN_A_WEEK, dayNames } from "containers/Reservations/contants";
 
 const Calendar = ({ month }: CalendarProps) => {
+  const location = useLocation();
+  const pathname = location.pathname;
+
   const weeks = useMemo(() => {
     const today = new Date();
 
@@ -52,7 +56,9 @@ const Calendar = ({ month }: CalendarProps) => {
           {weeks.map((days) => (
             <Tr>
               {days.map((day) => (
-                <Td>{day}</Td>
+                <Td>
+                  <Link to={`${pathname}/${day}`}>{day}</Link>
+                </Td>
               ))}
             </Tr>
           ))}
