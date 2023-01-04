@@ -17,7 +17,7 @@ const ReservationList = () => {
   const onToday = () => setMonth(new Date().getMonth());
 
   return (
-    <Flex direction="column">
+    <Flex w="max-content" m="auto" direction="column">
       <Header month={month} onPrev={onPrev} onNext={onNext} onToday={onToday} />
       <Calendar month={month} />
     </Flex>
