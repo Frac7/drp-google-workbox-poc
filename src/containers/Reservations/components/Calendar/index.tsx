@@ -31,7 +31,7 @@ const Calendar = ({ month }: CalendarProps) => {
           .fill(null)
           .map((_, day) => {
             const currentRowFirstDay = week * DAYS_IN_A_WEEK;
-            const currentRowRelativeDay = day + 1; // +1 beacause index ranges from 0-6
+            const currentRowRelativeDay = day + 1; // +1 because index ranges from 0-6
             const dayToReturn =
               currentRowFirstDay + currentRowRelativeDay - startingCell;
             return dayToReturn < 1 || dayToReturn > totalDays
