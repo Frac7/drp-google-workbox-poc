@@ -8,11 +8,13 @@ import {
   Th,
   Td,
   TableContainer,
+  Text,
 } from "@chakra-ui/react";
 
-import { DAYS_IN_A_WEEK, dayNames } from "containers/Reservations/contants";
+import { DAYS_IN_A_WEEK, dayNames } from "containers/Reservations/constants";
+import { CalendarProps } from "containers/Reservations/types";
 
-const Calendar = ({ month }: CalendarProps) => {
+const Calendar = ({ month, reservations }: CalendarProps) => {
   const location = useLocation();
   const pathname = location.pathname;
 
@@ -57,7 +59,13 @@ const Calendar = ({ month }: CalendarProps) => {
             <Tr>
               {days.map((day) => (
                 <Td>
-                  <Link to={`${pathname}/${day}`}>{day}</Link>
+                  {day && reservations[day] ? (
+                    <Link to={`${pathname}/${reservations[day]}`}>
+                      <Text color="orange">{day}</Text>
+                    </Link>
+                  ) : (
+                    <Text>{day}</Text>
+                  )}
                 </Td>
               ))}
             </Tr>
@@ -66,10 +74,6 @@ const Calendar = ({ month }: CalendarProps) => {
       </Table>
     </TableContainer>
   );
-};
-
-type CalendarProps = {
-  month: number;
 };
 
 export default memo(Calendar);

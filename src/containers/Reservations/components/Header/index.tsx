@@ -1,7 +1,8 @@
 import React, { memo } from "react";
 import { Flex, Button, Text, Center } from "@chakra-ui/react";
 
-import { monthNames } from "containers/Reservations/contants";
+import { monthNames } from "containers/Reservations/constants";
+import { HeaderProps } from "containers/Reservations/types";
 
 const Header = ({ month, onPrev, onNext, onToday }: HeaderProps) => {
   return (
@@ -17,13 +18,6 @@ const Header = ({ month, onPrev, onNext, onToday }: HeaderProps) => {
       <Button onClick={onToday}>Oggi</Button>
     </Flex>
   );
-};
-
-type HeaderProps = {
-  month: number;
-  onPrev: () => void;
-  onNext: () => void;
-  onToday: () => void;
 };
 
 export default memo(Header);
