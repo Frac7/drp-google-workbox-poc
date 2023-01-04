@@ -15,6 +15,7 @@ import {
   Select,
   FormControl,
   FormLabel,
+  useToast,
 } from "@chakra-ui/react";
 
 import { BookRouteState } from "./types";
@@ -26,8 +27,15 @@ const Book = () => {
     history.goBack();
   };
 
+  const toast = useToast();
   const onBookClick = () => {
     history.push(routes.RESERVATIONS);
+    toast({
+      title: "Scrivania prenotata",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
   };
   const location = useLocation();
   const state = location.state as BookRouteState;
