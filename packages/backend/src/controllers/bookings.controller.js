@@ -1,7 +1,8 @@
 const service = require("../services/bookings.service");
 
-const list = (_, res) => {
-  const bookings = service.list();
+const list = (req, res) => {
+  const month = req.query.month;
+  const bookings = service.list(month);
   res.json(bookings);
 };
 

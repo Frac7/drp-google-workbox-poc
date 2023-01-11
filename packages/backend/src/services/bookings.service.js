@@ -1,8 +1,10 @@
 const uuid4 = require("uuid4");
 const bookings = require("../mocks/bookings.mock");
 
-const list = () => {
-  return bookings;
+const list = (month) => {
+  return bookings
+    .filter((booking) => booking.date.getMonth() === parseInt(month))
+    .reduce((acc, curr) => ({ ...acc, [curr.date.getDate()]: curr.desk }), {});
 };
 
 const get = (id) => {

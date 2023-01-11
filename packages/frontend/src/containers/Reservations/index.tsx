@@ -1,4 +1,4 @@
-import React, { useState, memo } from "react";
+import React, { useState, memo, useEffect } from "react";
 import { Flex } from "@chakra-ui/react";
 
 import Header from "./components/Header";
@@ -16,7 +16,10 @@ const Reservations = () => {
     setMonth((currentMonth: number) => Math.min(MONTHS - 1, currentMonth + 1));
   const onToday = () => setMonth(new Date().getMonth());
 
-  const reservations = { 4: 1 };
+  const [reservations, setReservations] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:8000/bookings?month=${month}`).then(res => res.json()).then(setReservations)
+  }, [month])
 
   return (
     <Flex w="max-content" m="auto" direction="column">
