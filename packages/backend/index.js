@@ -3,6 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 
+const bookingRoutes = require("./src/routes/bookings.route");
+
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -14,6 +16,4 @@ app.listen(process.env.PORT, () => {
   console.log(`App running on port ${process.env.PORT}.`);
 });
 
-app.get("/", (request, response) => {
-  response.json({ info: "Hello World!" });
-});
+app.use("/bookings", bookingRoutes);
