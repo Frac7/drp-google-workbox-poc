@@ -74,8 +74,8 @@ const Book = () => {
                   </Heading>
                 </FormLabel>
                 <Select value={desk} onChange={onChangeDesk}>
-                  {desks.map((desk: number) => (
-                    <option value={desk}>{desk}</option>
+                  {desks.map((desk: number, i: number) => (
+                    <option key={i} value={desk}>{desk}</option>
                   ))}
                 </Select>
               </FormControl>
@@ -88,8 +88,8 @@ const Book = () => {
                   </Heading>
                 </FormLabel>
                 <Select>
-                  {offices.map((office: string) => (
-                    <option selected value={office}>
+                  {offices.map((office: string, i: number) => (
+                    <option key={i} selected value={office}>
                       {office}
                     </option>
                   ))}
