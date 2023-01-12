@@ -4,7 +4,7 @@ const bookings = require("../mocks/bookings.mock");
 const list = (month) => {
   return bookings
     .filter((booking) => booking.date.getMonth() === parseInt(month))
-    .reduce((acc, curr) => ({ ...acc, [curr.date.getDate()]: curr.desk }), {});
+    .reduce((acc, curr) => ({ ...acc, [curr.date.getDate()]: curr.id }), {});
 };
 
 const get = (id) => {
