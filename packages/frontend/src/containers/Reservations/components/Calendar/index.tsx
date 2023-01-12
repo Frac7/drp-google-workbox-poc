@@ -1,5 +1,5 @@
 import React, { useMemo, memo } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   Table,
   Thead,
@@ -60,16 +60,16 @@ const Calendar = ({ month, reservations }: CalendarProps) => {
       <Table variant="simple">
         <Thead>
           <Tr>
-            {dayNames.map((day) => (
-              <Th>{day}</Th>
+            {dayNames.map((day: string, i: number) => (
+              <Th key={i}>{day}</Th>
             ))}
           </Tr>
         </Thead>
         <Tbody>
-          {weeks.map((days) => (
-            <Tr>
-              {days.map((day) => (
-                <Td>
+          {weeks.map((days: Array<number | null>, i: number) => (
+            <Tr key={i}>
+              {days.map((day: number | null, j: number) => (
+                <Td key={j}>
                   {day ? (
                     <Text
                       cursor="pointer"

@@ -1,13 +1,16 @@
-import React, { useState, memo } from "react";
+import React, { useState, memo, useEffect } from "react";
 import { Flex } from "@chakra-ui/react";
+
+import { getReservationsByMonth } from "api/bookings";
 
 import Header from "./components/Header";
 import Calendar from "./components/Calendar";
 
 import { MONTHS } from "./constants";
+import { Reservations as ReservationsType } from "types";
 
 const Reservations = () => {
-  const [month, setMonth] = useState(0);
+  const [month, setMonth] = useState<number>(1);
   const onPrev = () =>
     setMonth((currentMonth: number) =>
       Math.max(0, (currentMonth - 1) % MONTHS)
@@ -16,7 +19,10 @@ const Reservations = () => {
     setMonth((currentMonth: number) => Math.min(MONTHS - 1, currentMonth + 1));
   const onToday = () => setMonth(new Date().getMonth());
 
-  const reservations = { 4: 1 };
+  const [reservations, setReservations] = useState<ReservationsType>([]);
+  useEffect(() => {
+    getReservationsByMonth(month).then(setReservations);
+  }, [month]);
 
   return (
     <Flex w="max-content" m="auto" direction="column">

@@ -18,54 +18,39 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-import { BookRouteState } from "./types";
 import { routes } from "containers/App/constants";
+import { createReservation } from "api/bookings";
+
+import { BookRouteState } from "./types";
+import { desks, offices } from "./mocks";
 
 const Book = () => {
   const history = useHistory();
+  const location = useLocation();
+  const state = location.state as BookRouteState;
+
+  const [desk, setDesk] = useState<number>(0);
+  const onChangeDesk = (event: ChangeEvent<HTMLSelectElement>) => {
+    event.persist();
+    setDesk(parseInt(event.target.value));
+  };
+
   const onCancelClick = () => {
     history.goBack();
   };
 
   const toast = useToast();
   const onBookClick = () => {
-    history.push(routes.RESERVATIONS);
-    toast({
-      title: "Scrivania prenotata",
-      status: "success",
-      duration: 3000,
-      isClosable: true,
+    createReservation({ date: state.date, desk }).then(() => {
+      history.push(routes.RESERVATIONS);
+      toast({
+        title: "Scrivania prenotata",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
     });
   };
-  const location = useLocation();
-  const state = location.state as BookRouteState;
-
-  const [desk, setDesk] = useState("");
-  const [office, setOffice] = useState("");
-
-  const onChangeDesk = (event: ChangeEvent<HTMLSelectElement>) => {
-    event.persist();
-    setDesk(event.target.value);
-  };
-  const onChangeOffice = (event: ChangeEvent<HTMLSelectElement>) => {
-    event.persist();
-    setOffice(event.target.value);
-  };
-
-  const desks = Array(50)
-    .fill(0)
-    .map((_, i) => i);
-  const offices = [
-    "Cagliari",
-    "Bari",
-    "Baronissi",
-    "Roma",
-    "Firenze",
-    "Maranello",
-    "Ivrea",
-    "Torino",
-    "Milano",
-  ];
 
   return (
     <Flex m="auto" w={{ md: "100%", lg: "50%" }} direction="column">
@@ -89,8 +74,8 @@ const Book = () => {
                   </Heading>
                 </FormLabel>
                 <Select value={desk} onChange={onChangeDesk}>
-                  {desks.map((desk: number) => (
-                    <option value={desk}>{desk}</option>
+                  {desks.map((desk: number, i: number) => (
+                    <option key={i} value={desk}>{desk}</option>
                   ))}
                 </Select>
               </FormControl>
@@ -102,9 +87,11 @@ const Book = () => {
                     Ufficio
                   </Heading>
                 </FormLabel>
-                <Select value={office} onChange={onChangeOffice}>
-                  {offices.map((office: string) => (
-                    <option value={office}>{office}</option>
+                <Select>
+                  {offices.map((office: string, i: number) => (
+                    <option key={i} selected value={office}>
+                      {office}
+                    </option>
                   ))}
                 </Select>
               </FormControl>
