@@ -1,6 +1,4 @@
-export type Reservations = {
-  [dayOfTheMonth: number]: number; // dayOfTheMonth: bookingID
-}
+import { Reservations } from "types";
 
 export type CalendarProps = {
   month: number;

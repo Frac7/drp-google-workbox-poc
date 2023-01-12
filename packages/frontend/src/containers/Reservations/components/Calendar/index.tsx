@@ -1,5 +1,5 @@
 import React, { useMemo, memo } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   Table,
   Thead,
