@@ -11,9 +11,10 @@ const get = (id) => {
   return bookings.find((booking) => booking.id === id);
 };
 
-const create = (booking) => {
+const create = ({ date, desk }) => {
   bookings.push({
-    ...booking,
+    desk,
+    date: new Date(date),
     id: uuid4(),
   });
 };
