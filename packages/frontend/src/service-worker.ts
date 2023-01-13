@@ -14,6 +14,8 @@ import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
 
+import { registerRoutes } from 'utils';
+
 declare const self: ServiceWorkerGlobalScope;
 
 clientsClaim();
@@ -78,3 +80,4 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+registerRoutes(); // background-sync-api for server request
