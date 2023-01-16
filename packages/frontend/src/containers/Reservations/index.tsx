@@ -25,7 +25,7 @@ const Reservations = () => {
   }, [month]);
 
   return (
-    <Flex w="max-content" m="auto" direction="column">
+    <Flex w="max-content" m="4rem auto" direction="column">
       <Header month={month} onPrev={onPrev} onNext={onNext} onToday={onToday} />
       <Calendar month={month} reservations={reservations} />
     </Flex>

@@ -53,7 +53,7 @@ const Book = () => {
   };
 
   return (
-    <Flex m="auto" w={{ md: "100%", lg: "50%" }} direction="column">
+    <Flex m="4rem auto" w={{ md: "100%", lg: "50%" }} direction="column">
       <Card size="lg">
         <CardHeader>
           <Heading size="md">Prenotazione della scrivania</Heading>
@@ -101,7 +101,7 @@ const Book = () => {
         <CardFooter>
           <Flex justifyContent="space-between" flex="1">
             <Button onClick={onCancelClick}>Annulla</Button>
-            <Button onClick={onBookClick}>Prenota</Button>
+            <Button colorScheme="teal" onClick={onBookClick}>Prenota</Button>
           </Flex>
         </CardFooter>
       </Card>
