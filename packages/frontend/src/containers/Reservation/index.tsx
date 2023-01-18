@@ -50,7 +50,7 @@ const Reservation = () => {
   };
 
   return (
-    <Flex m="auto" w={{ md: "100%", lg: "50%" }} direction="column">
+    <Flex m="4rem auto" w={{ md: "100%", lg: "50%" }} direction="column">
       <Card size="lg">
         <CardHeader>
           <Heading size="md">Scrivania prenotata</Heading>
@@ -89,7 +89,7 @@ const Reservation = () => {
         <CardFooter>
           <Flex justifyContent="space-between" flex="1">
             <Button onClick={onBackClick}>Indietro</Button>
-            <Button onClick={onDeleteClick}>Cancella</Button>
+            <Button colorScheme="red" onClick={onDeleteClick}>Rimuovi</Button>
           </Flex>
         </CardFooter>
       </Card>

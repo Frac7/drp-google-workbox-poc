@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import Book from "containers/Book";
 import Reservations from "containers/Reservations";
@@ -19,6 +19,7 @@ const App = () => (
       <Route path={routes.RESERVATIONS}>
         <Reservations />
       </Route>
+      <Redirect to={routes.RESERVATIONS} />
     </Switch>
   </BrowserRouter>
 );
