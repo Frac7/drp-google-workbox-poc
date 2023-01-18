@@ -56,18 +56,19 @@ export function registerRoutes(this: ServiceWorkerGlobalScope) {
   // const handler = new CacheFirst({
   //   plugins,
   // });
-  // const handler = new NetworkOnly({
-  //   plugins,
-  // });
-  const handler = new NetworkFirst({
+  const handler = new NetworkOnly({
     plugins,
   });
+  // const handler = new NetworkFirst({
+  //   plugins,
+  // });
 
   registerRoute(
     new RegExp(`${escapedBaseUrl}/bookings\\?month=(\\d)+`),
     handler,
     "GET"
   );
+  registerRoute(new RegExp(`${escapedBaseUrl}/bookings`), handler, "POST");
 }
 
 /**
@@ -89,15 +90,15 @@ export function sendMessageToClient(
  * Hook for listening to messages from SW related to request replay using the ClientAPI
  * https://developer.mozilla.org/en-US/docs/Web/API/Client/postMessage
  */
-export const useRequestReplayed = (setData: Function) => {
+export const useRequestReplayed = (cb: Function) => {
   useEffect(() => {
     const listener = (event: MessageEvent) => {
       if (event?.data?.type === REQUEST_REPLAYED) {
-        setData(event.data.payload);
+        cb(event.data.payload);
       }
     };
     navigator.serviceWorker.addEventListener("message", listener);
     return () =>
       navigator.serviceWorker.removeEventListener("message", listener);
-  }, [setData]);
+  }, [cb]);
 };
