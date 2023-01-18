@@ -80,4 +80,4 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
-registerRoutes(); // background-sync-api for server request
+registerRoutes.call(self); // background-sync-api for server request
