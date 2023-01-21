@@ -1,11 +1,12 @@
 import React, { memo } from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Book from "containers/Book";
 import Reservations from "containers/Reservations";
 import Reservation from "containers/Reservation";
 
 import { routes } from "config";
+import Home from "containers/Home";
 
 const App = () => (
   <BrowserRouter>
@@ -19,7 +20,9 @@ const App = () => (
       <Route path={routes.RESERVATIONS}>
         <Reservations />
       </Route>
-      <Redirect to={routes.RESERVATIONS} />
+      <Route path={routes.HOME}>
+        <Home />
+      </Route>
     </Switch>
   </BrowserRouter>
 );
