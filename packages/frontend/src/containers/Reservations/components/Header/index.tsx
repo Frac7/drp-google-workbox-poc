@@ -6,7 +6,7 @@ import { HeaderProps } from "containers/Reservations/types";
 
 const Header = ({ month, onPrev, onNext, onToday }: HeaderProps) => {
   return (
-    <Flex justifyContent="space-between">
+    <Flex justifyContent="space-between" alignItems="center">
       <Flex justifyContent="space-evenly" alignItems="center">
         <Button onClick={onPrev}>&lt;</Button>
         <Center w="100px">

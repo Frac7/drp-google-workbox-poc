@@ -9,6 +9,7 @@ import {
   Td,
   TableContainer,
   Text,
+  Show,
 } from "@chakra-ui/react";
 
 import { DAYS_IN_A_WEEK, dayNames } from "containers/Reservations/constants";
@@ -58,18 +59,20 @@ const Calendar = ({ month, reservations }: CalendarProps) => {
   return (
     <TableContainer>
       <Table variant="simple">
-        <Thead>
-          <Tr>
-            {dayNames.map((day: string, i: number) => (
-              <Th key={i}>{day}</Th>
-            ))}
-          </Tr>
-        </Thead>
+        <Show above="lg">
+          <Thead>
+            <Tr>
+              {dayNames.map((day: string, i: number) => (
+                <Th key={i}>{day}</Th>
+              ))}
+            </Tr>
+          </Thead>
+        </Show>
         <Tbody>
           {weeks.map((days: Array<number | null>, i: number) => (
             <Tr key={i}>
               {days.map((day: number | null, j: number) => (
-                <Td key={j}>
+                <Td key={j} p="1rem">
                   {day ? (
                     <Text
                       cursor="pointer"

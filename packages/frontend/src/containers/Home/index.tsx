@@ -7,7 +7,7 @@ import { routes } from 'config';
 
 const Home = () => {
   return (
-    <Flex m="4rem auto" w={{ md: "100%", lg: "50%" }} direction="column" justifyContent="center" alignItems="center">
+    <Flex m="4rem auto" w={{ sm: "100%", lg: "50%" }} direction="column" alignItems="center">
       <Heading as="h1">Desk Reservation Platform</Heading>
       <Heading as="h2">Google Workbox</Heading>
       <img alt="Google Workbox logo" src={workboxLogo}></img>

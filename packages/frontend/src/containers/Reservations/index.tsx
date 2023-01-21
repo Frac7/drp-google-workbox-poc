@@ -28,7 +28,7 @@ const Reservations = () => {
   useRequestReplayed(setReservations);
 
   return (
-    <Flex w="max-content" m="4rem auto" direction="column">
+    <Flex w={{ sm: "100%", lg: "max-content" }} m="4rem auto" direction="column">
       <Header month={month} onPrev={onPrev} onNext={onNext} onToday={onToday} />
       <Calendar month={month} reservations={reservations} />
     </Flex>
