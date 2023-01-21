@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 
 import { getReservationById, removeReservationById } from "api/bookings";
-import { routes } from "containers/App/constants";
+import { routes } from "config";
 import { Reservation as ReservationType } from "types";
 
 import { ReservationRouteParams } from "./types";
@@ -37,6 +37,7 @@ const Reservation = () => {
     removeReservationById(id).then(() => {
       history.push(routes.RESERVATIONS);
       toast({
+        position: 'top',
         title: "Prenotazione cancellata",
         status: "success",
         duration: 3000,
@@ -50,7 +51,7 @@ const Reservation = () => {
   };
 
   return (
-    <Flex m="4rem auto" w={{ md: "100%", lg: "50%" }} direction="column">
+    <Flex m="4rem auto" w={{ sm: "100%", lg: "50%" }} direction="column">
       <Card size="lg">
         <CardHeader>
           <Heading size="md">Scrivania prenotata</Heading>

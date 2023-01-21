@@ -18,7 +18,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-import { routes } from "containers/App/constants";
+import { routes } from "config";
 import { createReservation } from "api/bookings";
 import { useRequestReplayed } from "utils";
 
@@ -44,6 +44,7 @@ const Book = () => {
   const onBookSuccess = () => {
     history.push(routes.RESERVATIONS);
     toast({
+      position: 'top',
       title: "Scrivania prenotata",
       status: "success",
       duration: 3000,
@@ -52,6 +53,7 @@ const Book = () => {
   }
   const onBookError = () => {
     toast({
+      position: 'top',
       title: "In attesa della rete per prenotare la scrivania...",
       status: "loading",
       duration: 3000,
@@ -65,7 +67,7 @@ const Book = () => {
   useRequestReplayed(onBookSuccess);
 
   return (
-    <Flex m="4rem auto" w={{ md: "100%", lg: "50%" }} direction="column">
+    <Flex m="4rem auto" w={{ sm: "100%", lg: "50%" }} direction="column">
       <Card size="lg">
         <CardHeader>
           <Heading size="md">Prenotazione della scrivania</Heading>
