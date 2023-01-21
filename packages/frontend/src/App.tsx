@@ -7,11 +7,11 @@ import Book from "containers/Book";
 import Reservations from "containers/Reservations";
 import Reservation from "containers/Reservation";
 
-import { routes } from "config";
+import { BASE_NAME, routes } from "config";
 
 const App = () => (
   <Box m="1rem">
-    <BrowserRouter>
+    <BrowserRouter basename={BASE_NAME}>
       <Switch>
         <Route path={routes.BOOK}>
           <Book />
