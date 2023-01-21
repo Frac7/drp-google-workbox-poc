@@ -97,7 +97,7 @@ export const useRequestReplayed = (cb: Function) => {
         cb(event.data.payload);
       }
     };
-    navigator.serviceWorker.addEventListener("message", listener);
+    navigator?.serviceWorker?.addEventListener("message", listener);
     return () =>
       navigator.serviceWorker.removeEventListener("message", listener);
   }, [cb]);
