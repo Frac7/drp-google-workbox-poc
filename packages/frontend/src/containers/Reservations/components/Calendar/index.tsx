@@ -14,7 +14,7 @@ import {
 import { DAYS_IN_A_WEEK, dayNames } from "containers/Reservations/constants";
 import { CalendarProps } from "containers/Reservations/types";
 
-import { routes } from "containers/App/constants";
+import { routes } from "config";
 
 const Calendar = ({ month, reservations }: CalendarProps) => {
   const history = useHistory();

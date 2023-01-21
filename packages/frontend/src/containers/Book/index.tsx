@@ -18,7 +18,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-import { routes } from "containers/App/constants";
+import { routes } from "config";
 import { createReservation } from "api/bookings";
 import { useRequestReplayed } from "utils";
 

@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 
 import { getReservationById, removeReservationById } from "api/bookings";
-import { routes } from "containers/App/constants";
+import { routes } from "config";
 import { Reservation as ReservationType } from "types";
 
 import { ReservationRouteParams } from "./types";

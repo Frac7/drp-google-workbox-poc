@@ -1,4 +1,4 @@
-import { REQUEST_REPLAYED } from "global/constants";
+import { REQUEST_REPLAYED } from "utils/backgroundSync/constants";
 import { useEffect } from "react";
 import { BackgroundSyncPlugin } from "workbox-background-sync";
 import { registerRoute } from "workbox-routing";

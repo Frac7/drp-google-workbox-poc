@@ -5,7 +5,7 @@ import Book from "containers/Book";
 import Reservations from "containers/Reservations";
 import Reservation from "containers/Reservation";
 
-import { routes } from "./constants";
+import { routes } from "config";
 
 const App = () => (
   <BrowserRouter>
