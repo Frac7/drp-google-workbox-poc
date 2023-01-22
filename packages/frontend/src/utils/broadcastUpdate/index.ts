@@ -1,7 +1,8 @@
-// import { sendMessageToClient } from "utils/messages";
+import { useEffect } from "react";
 import { BroadcastUpdatePlugin } from "workbox-broadcast-update";
 import { registerRoute } from "workbox-routing";
 import { StaleWhileRevalidate } from "workbox-strategies";
+import { CACHE_UPDATED } from "./constants";
 
 /**
  * Registers a route with the router.
@@ -17,7 +18,15 @@ export function registerRoutes(this: ServiceWorkerGlobalScope) {
    * When responding to requests with cached entries, while being fast, it comes with a tradeoff that users may end up seeing stale data.
    * https://developer.chrome.com/docs/workbox/modules/workbox-broadcast-update/
    */
-  const plugins = [new BroadcastUpdatePlugin()];
+  const plugins = [
+    new BroadcastUpdatePlugin({
+      // Payload customization for the CACHE_UPDATED message
+      generatePayload: async ({ newResponse }) => {
+        const newResponseToJSON = await newResponse.json();
+        return newResponseToJSON;
+      },
+    }),
+  ];
   const handler = new StaleWhileRevalidate({
     plugins,
   });
@@ -28,3 +37,21 @@ export function registerRoutes(this: ServiceWorkerGlobalScope) {
     "GET"
   );
 }
+
+/**
+ * Hook for listening to messages from SW related to cached response update using the ClientAPI
+ * https://developer.chrome.com/docs/workbox/modules/workbox-broadcast-update/#using-broadcast-update
+ */
+export const useRevalidatedData = (cb: Function) => {
+  useEffect(() => {
+    const listener = (event: MessageEvent) => {
+      console.log(event);
+      if (event?.data?.type === CACHE_UPDATED) {
+        cb(event.data.payload);
+      }
+    };
+    navigator?.serviceWorker?.addEventListener("message", listener);
+    return () =>
+      navigator?.serviceWorker?.removeEventListener("message", listener);
+  }, [cb]);
+};

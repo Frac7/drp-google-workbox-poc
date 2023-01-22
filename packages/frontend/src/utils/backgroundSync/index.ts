@@ -86,6 +86,6 @@ export const useRequestReplayed = (cb: Function) => {
     };
     navigator?.serviceWorker?.addEventListener("message", listener);
     return () =>
-      navigator.serviceWorker.removeEventListener("message", listener);
+      navigator?.serviceWorker?.removeEventListener("message", listener);
   }, [cb]);
 };
