@@ -16,6 +16,7 @@ import {
   FormControl,
   FormLabel,
   useToast,
+  Input,
 } from "@chakra-ui/react";
 
 import { routes } from "config";
@@ -29,6 +30,12 @@ const Book = () => {
   const history = useHistory();
   const location = useLocation();
   const state = location.state as BookRouteState;
+
+  const [date, setDate] = useState<string>('');
+  const onChangeDate = (event: ChangeEvent<HTMLInputElement>) => {
+    event.persist();
+    setDate(event.target.value);
+  };
 
   const [desk, setDesk] = useState<number>(0);
   const onChangeDesk = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -61,7 +68,7 @@ const Book = () => {
     });
   }
   const onBookClick = () => {
-    createReservation({ date: state.date, desk }).then(onBookSuccess).catch(onBookError);
+    createReservation({ date: state?.date || date, desk }).then(onBookSuccess).catch(onBookError);
   };
 
   useRequestReplayed(onBookSuccess);
@@ -78,7 +85,15 @@ const Book = () => {
               <Heading size="xs" textTransform="uppercase">
                 Data
               </Heading>
-              <Text>{state.date.toLocaleDateString()}</Text>
+              {state?.date ?
+                <Text>{state.date.toLocaleDateString()}</Text> :
+                <Input
+                  value={date}
+                  onChange={onChangeDate}
+                  placeholder="Seleziona la data"
+                  size="md"
+                  type="date"
+                />}
             </Box>
             <Box>
               <FormControl isRequired>
