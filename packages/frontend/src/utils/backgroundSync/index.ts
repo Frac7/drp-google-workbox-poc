@@ -4,10 +4,11 @@ import { BackgroundSyncPlugin } from "workbox-background-sync";
 import { registerRoute } from "workbox-routing";
 import {
   NetworkOnly,
-  NetworkFirst,
-  CacheFirst,
-  CacheOnly,
+  // NetworkFirst,
+  // CacheFirst,
+  // CacheOnly,
 } from "workbox-strategies";
+import { sendMessageToClient } from "utils/messages";
 
 /**
  * A class implementing the fetchDidFail lifecycle callback. This makes it easier to add failed requests to a background sync Queue.
@@ -63,27 +64,13 @@ export function registerRoutes(this: ServiceWorkerGlobalScope) {
   //   plugins,
   // });
 
-  registerRoute(
-    new RegExp(`${escapedBaseUrl}/bookings\\?month=(\\d)+`),
-    handler,
-    "GET"
-  );
+  // registerRoute(
+  //   new RegExp(`${escapedBaseUrl}/bookings\\?month=(\\d)+`),
+  //   handler,
+  //   "GET"
+  // );
   registerRoute(new RegExp(`${escapedBaseUrl}/bookings`), handler, "POST");
-}
-
-/**
- * Implementation of SW -> Client communication using messages from ClientAPI
- * https://developer.mozilla.org/en-US/docs/Web/API/Client/postMessage
- */
-export function sendMessageToClient(
-  this: ServiceWorkerGlobalScope,
-  message: { type: string; payload: object }
-) {
-  return this.clients
-    .matchAll({ includeUncontrolled: true, type: "window" })
-    .then((clients: readonly WindowClient[]) =>
-      clients?.forEach((client: WindowClient) => client.postMessage(message))
-    );
+  registerRoute(new RegExp(`${escapedBaseUrl}/bookings`), handler, "DELETE");
 }
 
 /**
@@ -99,6 +86,6 @@ export const useRequestReplayed = (cb: Function) => {
     };
     navigator?.serviceWorker?.addEventListener("message", listener);
     return () =>
-      navigator.serviceWorker.removeEventListener("message", listener);
+      navigator?.serviceWorker?.removeEventListener("message", listener);
   }, [cb]);
 };

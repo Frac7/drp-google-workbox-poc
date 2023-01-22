@@ -8,7 +8,9 @@ import Calendar from "./components/Calendar";
 
 import { MONTHS } from "./constants";
 import { Reservations as ReservationsType } from "types";
-import { useRequestReplayed } from "utils";
+
+// import { useRequestReplayed } from "utils";
+import { useRevalidatedData } from "utils";
 
 const Reservations = () => {
   const [month, setMonth] = useState<number>(1);
@@ -25,7 +27,8 @@ const Reservations = () => {
     getReservationsByMonth(month).then(setReservations).catch(() => setReservations([]));
   }, [month]);
 
-  useRequestReplayed(setReservations);
+  // useRequestReplayed(setReservations);
+  useRevalidatedData(setReservations);
 
   return (
     <Flex w={{ sm: "100%", lg: "max-content" }} m="4rem auto" direction="column">

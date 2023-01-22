@@ -1,3 +1,15 @@
-import { registerRoutes, useRequestReplayed } from "./backgroundSync";
+import {
+  registerRoutes as registerRoutesBackgroundSync,
+  useRequestReplayed,
+} from "./backgroundSync";
+import {
+  registerRoutes as registerRoutesBroadcastUpdate,
+  useRevalidatedData,
+} from "./broadcastUpdate";
 
-export { registerRoutes, useRequestReplayed };
+export {
+  registerRoutesBackgroundSync,
+  useRequestReplayed,
+  registerRoutesBroadcastUpdate,
+  useRevalidatedData,
+};
