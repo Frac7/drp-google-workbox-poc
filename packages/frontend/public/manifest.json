@@ -24,7 +24,7 @@
   "background_color": "#000000",
   "shortcuts": [
     {
-      "name": "Prenotazioni",
+      "name": "Visualizza le tue prenotazioni",
       "url": "/drp-google-workbox-poc/reservations",
       "description": "Calendario delle prenotazioni"
     },
