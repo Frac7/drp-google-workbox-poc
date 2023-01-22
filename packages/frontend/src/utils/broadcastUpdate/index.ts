@@ -21,9 +21,8 @@ export function registerRoutes(this: ServiceWorkerGlobalScope) {
   const plugins = [
     new BroadcastUpdatePlugin({
       // Payload customization for the CACHE_UPDATED message
-      generatePayload: async ({ newResponse }) => {
-        const newResponseToJSON = await newResponse.json();
-        return newResponseToJSON;
+      generatePayload: ({ newResponse }) => {
+        return newResponse;
       },
     }),
   ];
@@ -47,7 +46,9 @@ export const useRevalidatedData = (cb: Function) => {
     const listener = (event: MessageEvent) => {
       console.log(event);
       if (event?.data?.type === CACHE_UPDATED) {
-        cb(event.data.payload);
+        event.data.payload
+          .json()
+          .then((res: { [key: number]: string }) => cb(res));
       }
     };
     navigator?.serviceWorker?.addEventListener("message", listener);
