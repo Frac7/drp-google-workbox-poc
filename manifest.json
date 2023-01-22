@@ -25,12 +25,12 @@
   "shortcuts": [
     {
       "name": "Prenotazioni",
-      "url": "/reservations",
+      "url": "/drp-google-workbox-poc/reservations",
       "description": "Calendario delle prenotazioni"
     },
     {
       "name": "Prenota una scrivania",
-      "url": "/book"
+      "url": "/drp-google-workbox-poc/book"
     }
   ]
 }
