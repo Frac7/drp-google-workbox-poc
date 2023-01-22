@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "DRP",
+  "name": "Desk Reservation Platform",
   "icons": [
     {
       "src": "favicon.ico",
@@ -21,5 +21,16 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#000000",
+  "shortcuts": [
+    {
+      "name": "Prenotazioni",
+      "url": "/drp-google-workbox-poc/reservations",
+      "description": "Calendario delle prenotazioni"
+    },
+    {
+      "name": "Prenota una scrivania",
+      "url": "/drp-google-workbox-poc/book"
+    }
+  ]
 }

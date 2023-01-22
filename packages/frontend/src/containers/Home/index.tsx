@@ -11,7 +11,7 @@ const Home = () => {
       <Heading as="h1">Desk Reservation Platform</Heading>
       <Heading as="h2">Google Workbox</Heading>
       <img alt="Google Workbox logo" src={workboxLogo}></img>
-      <Button><Link to={routes.RESERVATIONS}>Vai alle prenotazioni</Link></Button>
+      <Link to={routes.RESERVATIONS}><Button>Vai alle prenotazioni</Button></Link>
     </Flex>
   )
 }
