@@ -1,4 +1,4 @@
-import React, { memo, useState, } from "react";
+import React, { memo, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import {
   Flex,
@@ -37,23 +37,27 @@ const Reservation = () => {
   const onDeleteSuccess = () => {
     history.push(routes.RESERVATIONS);
     toast({
-      position: 'top',
+      position: "top",
       title: "Prenotazione cancellata",
       status: "success",
       duration: 3000,
       isClosable: true,
     });
-  }
+  };
 
   const [reservation, setReservation] = useState<ReservationType | null>(null);
   const { isLoading: isGetLoading } = useQuery(getReservationById, id, {
     onSuccess: setReservation,
-    errorMessage: "Errore nel caricamento della prenotazione"
+    errorMessage: "Errore nel caricamento della prenotazione",
   });
-  const { isLoading: isDeleteLoading, mutate } = useMutation(removeReservationById, id, {
-    onSuccess: onDeleteSuccess,
-    errorMessage: "Errore nella cancellazione della prenotazione"
-  });
+  const { isLoading: isDeleteLoading, mutate } = useMutation(
+    removeReservationById,
+    id,
+    {
+      onSuccess: onDeleteSuccess,
+      errorMessage: "Errore nella cancellazione della prenotazione",
+    }
+  );
 
   const onDeleteClick = () => {
     mutate();
@@ -101,7 +105,19 @@ const Reservation = () => {
         <CardFooter>
           <Flex justifyContent="space-between" flex="1">
             <Button onClick={onBackClick}>Indietro</Button>
-            <Button disabled={isGetLoading || isDeleteLoading} colorScheme="red" onClick={onDeleteClick}>Rimuovi{isDeleteLoading && <>&nbsp;<Spinner /></>}</Button>
+            <Button
+              disabled={isGetLoading || isDeleteLoading}
+              colorScheme="red"
+              onClick={onDeleteClick}
+            >
+              Rimuovi
+              {isDeleteLoading && (
+                <>
+                  &nbsp;
+                  <Spinner />
+                </>
+              )}
+            </Button>
           </Flex>
         </CardFooter>
       </Card>

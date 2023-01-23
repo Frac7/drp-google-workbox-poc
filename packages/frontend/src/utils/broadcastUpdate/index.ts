@@ -37,7 +37,10 @@ export function registerRoutes(this: ServiceWorkerGlobalScope) {
 export const useRevalidatedData = (cb: Function) => {
   useEffect(() => {
     const listener = async (event: MessageEvent) => {
-      if (event.data.meta === 'workbox-broadcast-update' && event?.data?.type === CACHE_UPDATED) {
+      if (
+        event.data.meta === "workbox-broadcast-update" &&
+        event?.data?.type === CACHE_UPDATED
+      ) {
         const { cacheName, updatedURL } = event.data.payload;
 
         const cache = await caches?.open(cacheName);

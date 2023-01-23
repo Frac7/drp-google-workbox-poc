@@ -32,7 +32,7 @@ const Book = () => {
   const location = useLocation();
   const state = location.state as BookRouteState;
 
-  const [date, setDate] = useState<string>('');
+  const [date, setDate] = useState<string>("");
   const onChangeDate = (event: ChangeEvent<HTMLInputElement>) => {
     event.persist();
     setDate(event.target.value);
@@ -52,17 +52,21 @@ const Book = () => {
   const onBookSuccess = () => {
     history.push(routes.RESERVATIONS);
     toast({
-      position: 'top',
+      position: "top",
       title: "Scrivania prenotata",
       status: "success",
       duration: 3000,
       isClosable: true,
     });
-  }
-  const { isLoading, mutate } = useMutation(createReservation, { date: state?.date || date, desk }, {
-    onSuccess: onBookSuccess,
-    errorMessage: "Errore nella prenotazione della scrivania"
-  });
+  };
+  const { isLoading, mutate } = useMutation(
+    createReservation,
+    { date: state?.date || date, desk },
+    {
+      onSuccess: onBookSuccess,
+      errorMessage: "Errore nella prenotazione della scrivania",
+    }
+  );
   const onBookClick = () => {
     mutate();
   };
@@ -81,15 +85,17 @@ const Book = () => {
               <Heading size="xs" textTransform="uppercase">
                 Data
               </Heading>
-              {state?.date ?
-                <Text>{state.date.toLocaleDateString()}</Text> :
+              {state?.date ? (
+                <Text>{state.date.toLocaleDateString()}</Text>
+              ) : (
                 <Input
                   value={date}
                   onChange={onChangeDate}
                   placeholder="Seleziona la data"
                   size="md"
                   type="date"
-                />}
+                />
+              )}
             </Box>
             <Box>
               <FormControl isRequired>
@@ -100,7 +106,9 @@ const Book = () => {
                 </FormLabel>
                 <Select value={desk} onChange={onChangeDesk}>
                   {desks.map((desk: number, i: number) => (
-                    <option key={i} value={desk}>{desk}</option>
+                    <option key={i} value={desk}>
+                      {desk}
+                    </option>
                   ))}
                 </Select>
               </FormControl>
@@ -126,7 +134,19 @@ const Book = () => {
         <CardFooter>
           <Flex justifyContent="space-between" flex="1">
             <Button onClick={onCancelClick}>Annulla</Button>
-            <Button disabled={isLoading} colorScheme="teal" onClick={onBookClick}>Prenota{isLoading && <>&nbsp;<Spinner /></>}</Button>
+            <Button
+              disabled={isLoading}
+              colorScheme="teal"
+              onClick={onBookClick}
+            >
+              Prenota
+              {isLoading && (
+                <>
+                  &nbsp;
+                  <Spinner />
+                </>
+              )}
+            </Button>
           </Flex>
         </CardFooter>
       </Card>

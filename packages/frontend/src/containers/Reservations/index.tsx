@@ -24,16 +24,27 @@ const Reservations = () => {
   const [reservations, setReservations] = useState<ReservationsType>([]);
   const { isLoading } = useQuery(getReservationsByMonth, month, {
     onSuccess: setReservations,
-    errorMessage: "Errore nel caricamento delle prenotazioni"
+    errorMessage: "Errore nel caricamento delle prenotazioni",
   });
 
   // useRequestReplayed(setReservations);
   useRevalidatedData(setReservations);
 
   return (
-    <Flex w={{ sm: '100%', lg: '750px' }} m="4rem auto" direction="column" alignItems="center">
+    <Flex
+      w={{ sm: "100%", lg: "750px" }}
+      m="4rem auto"
+      direction="column"
+      alignItems="center"
+    >
       <Header month={month} onPrev={onPrev} onNext={onNext} onToday={onToday} />
-      <Box my="2rem">{isLoading ? <Spinner /> : <Calendar month={month} reservations={reservations} />}</Box>
+      <Box my="2rem">
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <Calendar month={month} reservations={reservations} />
+        )}
+      </Box>
     </Flex>
   );
 };
