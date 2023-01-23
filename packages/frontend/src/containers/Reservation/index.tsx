@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import {
   Flex,
@@ -14,6 +14,7 @@ import {
   Box,
   Skeleton,
   Spinner,
+  useToast,
 } from "@chakra-ui/react";
 
 import { getReservationById, removeReservationById } from "api/bookings";
@@ -21,7 +22,7 @@ import { routes } from "config";
 import { Reservation as ReservationType } from "types";
 
 import { ReservationRouteParams } from "./types";
-import { useQuery, useMutation } from "utils";
+import { useQuery, useMutation, useRequestReplayed } from "utils";
 
 const Reservation = () => {
   const history = useHistory();
@@ -32,20 +33,33 @@ const Reservation = () => {
     history.goBack();
   };
 
+  const toast = useToast();
+  const onDeleteSuccess = () => {
+    history.push(routes.RESERVATIONS);
+    toast({
+      position: 'top',
+      title: "Prenotazione cancellata",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+  }
+
   const [reservation, setReservation] = useState<ReservationType | null>(null);
   const { isLoading: isGetLoading } = useQuery(getReservationById, id, {
     onSuccess: setReservation,
     errorMessage: "Errore nel caricamento della prenotazione"
   });
   const { isLoading: isDeleteLoading, mutate } = useMutation(removeReservationById, id, {
-    onSuccess: () => history.push(routes.RESERVATIONS),
-    successMessage: "Prenotazione cancellata",
+    onSuccess: onDeleteSuccess,
     errorMessage: "Errore nella cancellazione della prenotazione"
   });
 
   const onDeleteClick = () => {
     mutate();
   };
+
+  useRequestReplayed(onDeleteSuccess);
 
   return (
     <Flex m="4rem auto" w={{ sm: "100%", lg: "50%" }} direction="column">
