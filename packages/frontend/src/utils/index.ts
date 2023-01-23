@@ -7,9 +7,13 @@ import {
   useRevalidatedData,
 } from "./broadcastUpdate";
 
+import { useQuery, useMutation } from "./request";
+
 export {
   registerRoutesBackgroundSync,
   useRequestReplayed,
   registerRoutesBroadcastUpdate,
   useRevalidatedData,
+  useQuery,
+  useMutation,
 };

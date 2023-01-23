@@ -17,11 +17,12 @@ import {
   FormLabel,
   useToast,
   Input,
+  Spinner,
 } from "@chakra-ui/react";
 
 import { routes } from "config";
 import { createReservation } from "api/bookings";
-import { useRequestReplayed } from "utils";
+import { useMutation, useRequestReplayed } from "utils";
 
 import { BookRouteState } from "./types";
 import { desks, offices } from "./mocks";
@@ -58,17 +59,12 @@ const Book = () => {
       isClosable: true,
     });
   }
-  const onBookError = () => {
-    toast({
-      position: 'top',
-      title: "In attesa della rete per prenotare la scrivania...",
-      status: "loading",
-      duration: 3000,
-      isClosable: true,
-    });
-  }
+  const { isLoading, mutate } = useMutation(createReservation, { date: state?.date || date, desk }, {
+    onSuccess: onBookSuccess,
+    errorMessage: "Errore nella prenotazione della scrivania"
+  });
   const onBookClick = () => {
-    createReservation({ date: state?.date || date, desk }).then(onBookSuccess).catch(onBookError);
+    mutate();
   };
 
   useRequestReplayed(onBookSuccess);
@@ -130,7 +126,7 @@ const Book = () => {
         <CardFooter>
           <Flex justifyContent="space-between" flex="1">
             <Button onClick={onCancelClick}>Annulla</Button>
-            <Button colorScheme="teal" onClick={onBookClick}>Prenota</Button>
+            <Button disabled={isLoading} colorScheme="teal" onClick={onBookClick}>Prenota{isLoading && <>&nbsp;<Spinner /></>}</Button>
           </Flex>
         </CardFooter>
       </Card>
