@@ -7,9 +7,13 @@ import {
   useRevalidatedData,
 } from "./broadcastUpdate";
 
+import { listenForSyncEvents, useOnlineFeedback } from "./onlineFeedback";
+
 export {
   registerRoutesBackgroundSync,
   useRequestReplayed,
   registerRoutesBroadcastUpdate,
   useRevalidatedData,
+  listenForSyncEvents,
+  useOnlineFeedback,
 };
