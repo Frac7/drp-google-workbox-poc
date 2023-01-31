@@ -39,18 +39,17 @@ const showOnlineToast = (toast: CreateToastFnReturn, event: Event) => {
 export const useOnlineFeedback = () => {
   const toast = useToast();
 
-  window.addEventListener("online", showOnlineToast.bind(null, toast));
-  window.addEventListener("offline", showOnlineToast.bind(null, toast));
+  const onlineListener = showOnlineToast.bind(null, toast);
+  window.addEventListener("online", onlineListener);
+  window.addEventListener("offline", onlineListener);
 
-  navigator?.serviceWorker?.addEventListener(
-    "message",
-    showSyncToast.bind(null, toast)
-  );
-  return () =>
-    navigator?.serviceWorker?.removeEventListener(
-      "message",
-      showSyncToast.bind(null, toast)
-    );
+  const syncListener = showSyncToast.bind(null, toast);
+  navigator?.serviceWorker?.addEventListener("message", syncListener);
+  return () => {
+    navigator?.serviceWorker?.removeEventListener("message", syncListener);
+    window.removeEventListener("online", onlineListener);
+    window.removeEventListener("offline", onlineListener);
+  };
 };
 
 export function listenForSyncEvents(this: ServiceWorkerGlobalScope) {
