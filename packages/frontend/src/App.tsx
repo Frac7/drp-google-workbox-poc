@@ -8,7 +8,7 @@ import Reservations from "containers/Reservations";
 import Reservation from "containers/Reservation";
 
 import { BASE_NAME, routes } from "config";
-import { useOnlineFeedback } from "utils/onlineFeedback";
+import { useOnlineFeedback } from "utils";
 
 const App = () => {
   useOnlineFeedback();
