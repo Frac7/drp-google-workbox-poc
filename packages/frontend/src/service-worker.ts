@@ -14,10 +14,7 @@ import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
 import { StaleWhileRevalidate } from "workbox-strategies";
 
-import {
-  registerRoutesBackgroundSync,
-  registerRoutesBroadcastUpdate,
-} from "utils";
+import { registerRoutesBackgroundSync, registerRoutesBroadcastUpdate, listenForSyncEvents } from 'utils';
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -86,3 +83,5 @@ self.addEventListener("message", (event) => {
 // Any other custom service worker logic can go here.
 registerRoutesBackgroundSync.call(self);
 registerRoutesBroadcastUpdate.call(self);
+
+listenForSyncEvents.call(self);
