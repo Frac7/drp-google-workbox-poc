@@ -17,11 +17,12 @@ import {
   FormLabel,
   useToast,
   Input,
+  Spinner,
 } from "@chakra-ui/react";
 
 import { routes } from "config";
 import { createReservation } from "api/bookings";
-import { useRequestReplayed } from "utils";
+import { useMutation, useRequestReplayed } from "utils";
 
 import { BookRouteState } from "./types";
 import { desks, offices } from "./mocks";
@@ -31,7 +32,7 @@ const Book = () => {
   const location = useLocation();
   const state = location.state as BookRouteState;
 
-  const [date, setDate] = useState<string>('');
+  const [date, setDate] = useState<string>("");
   const onChangeDate = (event: ChangeEvent<HTMLInputElement>) => {
     event.persist();
     setDate(event.target.value);
@@ -51,24 +52,23 @@ const Book = () => {
   const onBookSuccess = () => {
     history.push(routes.RESERVATIONS);
     toast({
-      position: 'top',
+      position: "top",
       title: "Scrivania prenotata",
       status: "success",
       duration: 3000,
       isClosable: true,
     });
-  }
-  const onBookError = () => {
-    toast({
-      position: 'top',
-      title: "In attesa della rete per prenotare la scrivania...",
-      status: "loading",
-      duration: 3000,
-      isClosable: true,
-    });
-  }
+  };
+  const { isLoading, mutate } = useMutation(
+    createReservation,
+    { date: state?.date || date, desk },
+    {
+      onSuccess: onBookSuccess,
+      errorMessage: "Errore nella prenotazione della scrivania",
+    }
+  );
   const onBookClick = () => {
-    createReservation({ date: state?.date || date, desk }).then(onBookSuccess).catch(onBookError);
+    mutate();
   };
 
   useRequestReplayed(onBookSuccess);
@@ -85,15 +85,17 @@ const Book = () => {
               <Heading size="xs" textTransform="uppercase">
                 Data
               </Heading>
-              {state?.date ?
-                <Text>{state.date.toLocaleDateString()}</Text> :
+              {state?.date ? (
+                <Text>{state.date.toLocaleDateString()}</Text>
+              ) : (
                 <Input
                   value={date}
                   onChange={onChangeDate}
                   placeholder="Seleziona la data"
                   size="md"
                   type="date"
-                />}
+                />
+              )}
             </Box>
             <Box>
               <FormControl isRequired>
@@ -104,7 +106,9 @@ const Book = () => {
                 </FormLabel>
                 <Select value={desk} onChange={onChangeDesk}>
                   {desks.map((desk: number, i: number) => (
-                    <option key={i} value={desk}>{desk}</option>
+                    <option key={i} value={desk}>
+                      {desk}
+                    </option>
                   ))}
                 </Select>
               </FormControl>
@@ -130,7 +134,19 @@ const Book = () => {
         <CardFooter>
           <Flex justifyContent="space-between" flex="1">
             <Button onClick={onCancelClick}>Annulla</Button>
-            <Button colorScheme="teal" onClick={onBookClick}>Prenota</Button>
+            <Button
+              disabled={isLoading}
+              colorScheme="teal"
+              onClick={onBookClick}
+            >
+              Prenota
+              {isLoading && (
+                <>
+                  &nbsp;
+                  <Spinner />
+                </>
+              )}
+            </Button>
           </Flex>
         </CardFooter>
       </Card>

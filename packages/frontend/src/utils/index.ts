@@ -6,8 +6,8 @@ import {
   registerRoutes as registerRoutesBroadcastUpdate,
   useRevalidatedData,
 } from "./broadcastUpdate";
-
 import { listenForSyncEvents, useOnlineFeedback } from "./onlineFeedback";
+import { useQuery, useMutation } from "./request";
 
 export {
   registerRoutesBackgroundSync,
@@ -16,4 +16,6 @@ export {
   useRevalidatedData,
   listenForSyncEvents,
   useOnlineFeedback,
+  useQuery,
+  useMutation,
 };

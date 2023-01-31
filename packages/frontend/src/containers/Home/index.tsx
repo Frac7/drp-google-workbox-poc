@@ -1,19 +1,26 @@
-import React from 'react'
-import { Button, Flex, Heading } from '@chakra-ui/react'
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button, Flex, Heading } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
-import workboxLogo from 'assets/images/workbox-logo.png';
-import { routes } from 'config';
+import workboxLogo from "assets/images/workbox-logo.png";
+import { routes } from "config";
 
 const Home = () => {
   return (
-    <Flex m="4rem auto" w={{ sm: "100%", lg: "50%" }} direction="column" alignItems="center">
+    <Flex
+      m="4rem auto"
+      w={{ sm: "100%", lg: "50%" }}
+      direction="column"
+      alignItems="center"
+    >
       <Heading as="h1">Desk Reservation Platform</Heading>
       <Heading as="h2">Google Workbox</Heading>
       <img alt="Google Workbox logo" src={workboxLogo}></img>
-      <Link to={routes.RESERVATIONS}><Button>Vai alle prenotazioni</Button></Link>
+      <Link to={routes.RESERVATIONS}>
+        <Button>Vai alle prenotazioni</Button>
+      </Link>
     </Flex>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
