@@ -1,4 +1,8 @@
-import { useToast, CreateToastFnReturn } from "@chakra-ui/react";
+import {
+  useToast,
+  CreateToastFnReturn,
+  UseToastOptions,
+} from "@chakra-ui/react";
 import { sendMessageToClient } from "utils/messages";
 
 import { SYNC } from "./constants";
@@ -16,24 +20,20 @@ const showSyncToast = (toast: CreateToastFnReturn, event: MessageEvent) => {
 };
 
 const showOnlineToast = (toast: CreateToastFnReturn, event: Event) => {
+  const options: UseToastOptions = {
+    position: "top",
+    duration: 3000,
+    isClosable: true,
+  };
   if (event?.type === "online") {
-    return toast({
-      position: "top",
-      duration: 3000,
-      isClosable: true,
-      title: "Sei online",
-      status: "info",
-    });
+    options.status = "info";
+    options.title = "Sei online";
   }
   if (event?.type === "offline") {
-    return toast({
-      position: "top",
-      duration: 3000,
-      isClosable: true,
-      title: "Sei offline",
-      status: "warning",
-    });
+    options.title = "Sei offline";
+    options.status = "warning";
   }
+  return toast(options);
 };
 
 export const useOnlineFeedback = () => {
