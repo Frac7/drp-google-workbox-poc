@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "https://frac7.github.io/drp-google-workbox-poc/static/css/main.e6c13ad2.css",
-    "main.js": "https://frac7.github.io/drp-google-workbox-poc/static/js/main.449b35ac.js",
-    "static/js/787.88c01833.chunk.js": "https://frac7.github.io/drp-google-workbox-poc/static/js/787.88c01833.chunk.js",
-    "service-worker.js": "https://frac7.github.io/drp-google-workbox-poc/service-worker.js",
-    "index.html": "https://frac7.github.io/drp-google-workbox-poc/index.html",
-    "main.e6c13ad2.css.map": "https://frac7.github.io/drp-google-workbox-poc/static/css/main.e6c13ad2.css.map",
-    "main.449b35ac.js.map": "https://frac7.github.io/drp-google-workbox-poc/static/js/main.449b35ac.js.map",
-    "787.88c01833.chunk.js.map": "https://frac7.github.io/drp-google-workbox-poc/static/js/787.88c01833.chunk.js.map"
+    "main.css": "/static/css/main.e6c13ad2.css",
+    "main.js": "/static/js/main.5c81f93e.js",
+    "static/js/787.88c01833.chunk.js": "/static/js/787.88c01833.chunk.js",
+    "service-worker.js": "/service-worker.js",
+    "index.html": "/index.html",
+    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
+    "main.5c81f93e.js.map": "/static/js/main.5c81f93e.js.map",
+    "787.88c01833.chunk.js.map": "/static/js/787.88c01833.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.449b35ac.js"
+    "static/js/main.5c81f93e.js"
   ]
 }
