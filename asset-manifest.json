@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/drp-google-workbox-poc/static/css/main.e6c13ad2.css",
-    "main.js": "/drp-google-workbox-poc/static/js/main.0b0ff92f.js",
-    "static/js/787.88c01833.chunk.js": "/drp-google-workbox-poc/static/js/787.88c01833.chunk.js",
-    "service-worker.js": "/drp-google-workbox-poc/service-worker.js",
-    "index.html": "/drp-google-workbox-poc/index.html",
-    "main.e6c13ad2.css.map": "/drp-google-workbox-poc/static/css/main.e6c13ad2.css.map",
-    "main.0b0ff92f.js.map": "/drp-google-workbox-poc/static/js/main.0b0ff92f.js.map",
-    "787.88c01833.chunk.js.map": "/drp-google-workbox-poc/static/js/787.88c01833.chunk.js.map"
+    "main.css": "/static/css/main.e6c13ad2.css",
+    "main.js": "/static/js/main.15f75f61.js",
+    "static/js/787.88c01833.chunk.js": "/static/js/787.88c01833.chunk.js",
+    "service-worker.js": "/service-worker.js",
+    "index.html": "/index.html",
+    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
+    "main.15f75f61.js.map": "/static/js/main.15f75f61.js.map",
+    "787.88c01833.chunk.js.map": "/static/js/787.88c01833.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.0b0ff92f.js"
+    "static/js/main.15f75f61.js"
   ]
 }
