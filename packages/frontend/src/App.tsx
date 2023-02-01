@@ -7,7 +7,7 @@ import Book from "containers/Book";
 import Reservations from "containers/Reservations";
 import Reservation from "containers/Reservation";
 
-import { BASE_NAME, routes } from "config";
+import { routes } from "config";
 import { useOnlineFeedback } from "utils";
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
 
   return (
     <Box m="1rem">
-      <BrowserRouter basename={BASE_NAME}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path={routes.BOOK}>
             <Book />
@@ -33,6 +33,6 @@ const App = () => {
       </BrowserRouter>
     </Box>
   );
-}
+};
 
 export default memo(App);
