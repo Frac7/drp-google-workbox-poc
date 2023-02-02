@@ -18,19 +18,19 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "./drp-google-workbox-poc",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#000000",
   "shortcuts": [
     {
       "name": "Visualizza le tue prenotazioni",
-      "url": "/drp-google-workbox-poc/reservations",
+      "url": "/reservations",
       "description": "Calendario delle prenotazioni"
     },
     {
       "name": "Prenota una scrivania",
-      "url": "/drp-google-workbox-poc/book"
+      "url": "/book"
     }
   ]
 }
