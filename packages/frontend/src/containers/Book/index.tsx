@@ -20,7 +20,7 @@ import { useMutation, useRequestReplayed } from "utils";
 
 import { BookRouteState } from "./types";
 import { desks } from "./mocks";
-import Date from "./components/Date";
+import ReservationDate from "./components/ReservationDate";
 import Desk from "./components/Desk";
 
 const Book = () => {
@@ -77,7 +77,7 @@ const Book = () => {
         </CardHeader>
         <CardBody>
           <Stack divider={<StackDivider />} spacing="4">
-            <Date
+            <ReservationDate
               readonlyDate={state?.date}
               date={date}
               onChangeDate={onChangeDate}

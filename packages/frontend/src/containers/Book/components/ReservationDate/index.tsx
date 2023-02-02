@@ -2,7 +2,7 @@ import React, { ChangeEventHandler } from "react";
 
 import { Text, Heading, Box, Input } from "@chakra-ui/react";
 
-const Date = ({
+const ReservationDate = ({
   readonlyDate,
   date,
   onChangeDate,
@@ -29,4 +29,4 @@ const Date = ({
   </Box>
 );
 
-export default Date;
+export default ReservationDate;
