@@ -7,16 +7,10 @@ import {
   CardBody,
   CardFooter,
   Button,
-  Text,
   Heading,
   Stack,
   StackDivider,
-  Box,
-  Select,
-  FormControl,
-  FormLabel,
   useToast,
-  Input,
   Spinner,
 } from "@chakra-ui/react";
 
@@ -25,7 +19,9 @@ import { createReservation } from "api/bookings";
 import { useMutation, useRequestReplayed } from "utils";
 
 import { BookRouteState } from "./types";
-import { desks, offices } from "./mocks";
+import { desks } from "./mocks";
+import ReservationDate from "./components/ReservationDate";
+import Desk from "./components/Desk";
 
 const Book = () => {
   const history = useHistory();
@@ -81,54 +77,12 @@ const Book = () => {
         </CardHeader>
         <CardBody>
           <Stack divider={<StackDivider />} spacing="4">
-            <Box>
-              <Heading size="xs" textTransform="uppercase">
-                Data
-              </Heading>
-              {state?.date ? (
-                <Text>{state.date.toLocaleDateString()}</Text>
-              ) : (
-                <Input
-                  value={date}
-                  onChange={onChangeDate}
-                  placeholder="Seleziona la data"
-                  size="md"
-                  type="date"
-                />
-              )}
-            </Box>
-            <Box>
-              <FormControl isRequired>
-                <FormLabel>
-                  <Heading size="xs" textTransform="uppercase">
-                    Scrivania
-                  </Heading>
-                </FormLabel>
-                <Select value={desk} onChange={onChangeDesk}>
-                  {desks.map((desk: number, i: number) => (
-                    <option key={i} value={desk}>
-                      {desk}
-                    </option>
-                  ))}
-                </Select>
-              </FormControl>
-            </Box>
-            <Box>
-              <FormControl isRequired>
-                <FormLabel>
-                  <Heading size="xs" textTransform="uppercase">
-                    Ufficio
-                  </Heading>
-                </FormLabel>
-                <Select>
-                  {offices.map((office: string, i: number) => (
-                    <option key={i} selected value={office}>
-                      {office}
-                    </option>
-                  ))}
-                </Select>
-              </FormControl>
-            </Box>
+            <ReservationDate
+              readonlyDate={state?.date}
+              date={date}
+              onChangeDate={onChangeDate}
+            />
+            <Desk desks={desks} desk={desk} onChangeDesk={onChangeDesk} />
           </Stack>
         </CardBody>
         <CardFooter>

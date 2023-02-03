@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "preserve": "npm run build",
     "serve": "serve -s build",
-    "predeploy": "npm run build",
+    "predeploy": "PUBLIC_URL=/drp-google-workbox-poc npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
@@ -58,6 +58,5 @@
     "@types/react-router-dom": "^5.3.3",
     "gh-pages": "^5.0.0",
     "serve": "^14.1.2"
-  },
-  "homepage": "https://frac7.github.io/drp-google-workbox-poc"
+  }
 }

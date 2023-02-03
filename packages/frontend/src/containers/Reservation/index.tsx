@@ -7,12 +7,9 @@ import {
   CardBody,
   CardFooter,
   Button,
-  Text,
   Heading,
   Stack,
   StackDivider,
-  Box,
-  Skeleton,
   Spinner,
   useToast,
 } from "@chakra-ui/react";
@@ -23,6 +20,9 @@ import { Reservation as ReservationType } from "types";
 
 import { ReservationRouteParams } from "./types";
 import { useQuery, useMutation, useRequestReplayed } from "utils";
+
+import ReservationDate from "./components/ReservationDate";
+import Desk from "./components/Desk";
 
 const Reservation = () => {
   const history = useHistory();
@@ -73,33 +73,11 @@ const Reservation = () => {
         </CardHeader>
         <CardBody>
           <Stack divider={<StackDivider />} spacing="4">
-            <Box>
-              <Skeleton isLoaded={!isGetLoading}>
-                <Heading size="xs" textTransform="uppercase">
-                  Data
-                </Heading>
-                <Text>
-                  {reservation?.date &&
-                    new Date(reservation.date).toLocaleDateString()}
-                </Text>
-              </Skeleton>
-            </Box>
-            <Box>
-              <Skeleton isLoaded={!isGetLoading}>
-                <Heading size="xs" textTransform="uppercase">
-                  Scrivania
-                </Heading>
-                <Text>{reservation?.desk}</Text>
-              </Skeleton>
-            </Box>
-            <Box>
-              <Skeleton isLoaded={!isGetLoading}>
-                <Heading size="xs" textTransform="uppercase">
-                  Ufficio
-                </Heading>
-                <Text>Cagliari</Text>
-              </Skeleton>
-            </Box>
+            <ReservationDate
+              isLoading={isGetLoading}
+              date={reservation?.date}
+            />
+            <Desk desk={reservation?.desk} isLoading={isGetLoading} />
           </Stack>
         </CardBody>
         <CardFooter>
