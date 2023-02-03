@@ -24,6 +24,7 @@ const Reservations = () => {
   const [reservations, setReservations] = useState<ReservationsType>([]);
   const { isLoading } = useQuery(getReservationsByMonth, month, {
     onSuccess: setReservations,
+    onError: () => setReservations([]),
     errorMessage: "Errore nel caricamento delle prenotazioni",
   });
 
