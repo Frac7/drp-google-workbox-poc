@@ -22,6 +22,7 @@ import { BookRouteState } from "./types";
 import { desks } from "./mocks";
 import ReservationDate from "./components/ReservationDate";
 import Desk from "./components/Desk";
+import { CREATE_RESERVATION } from "./constants";
 
 const Book = () => {
   const history = useHistory();
@@ -67,7 +68,7 @@ const Book = () => {
     mutate();
   };
 
-  useRequestReplayed(onBookSuccess);
+  useRequestReplayed({ cb: onBookSuccess, key: CREATE_RESERVATION });
 
   return (
     <Flex m="4rem auto" w={{ sm: "100%", lg: "50%" }} direction="column">
