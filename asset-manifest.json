@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/drp-google-workbox-poc/static/css/main.e6c13ad2.css",
-    "main.js": "/drp-google-workbox-poc/static/js/main.a4764740.js",
+    "main.js": "/drp-google-workbox-poc/static/js/main.edefdef2.js",
     "static/js/787.88c01833.chunk.js": "/drp-google-workbox-poc/static/js/787.88c01833.chunk.js",
     "service-worker.js": "/drp-google-workbox-poc/service-worker.js",
     "index.html": "/drp-google-workbox-poc/index.html",
     "main.e6c13ad2.css.map": "/drp-google-workbox-poc/static/css/main.e6c13ad2.css.map",
-    "main.a4764740.js.map": "/drp-google-workbox-poc/static/js/main.a4764740.js.map",
+    "main.edefdef2.js.map": "/drp-google-workbox-poc/static/js/main.edefdef2.js.map",
     "787.88c01833.chunk.js.map": "/drp-google-workbox-poc/static/js/787.88c01833.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.a4764740.js"
+    "static/js/main.edefdef2.js"
   ]
 }
