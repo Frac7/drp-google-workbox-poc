@@ -17,12 +17,12 @@ import {
 import { getReservationById, removeReservationById } from "api/bookings";
 import { routes } from "config";
 import { Reservation as ReservationType } from "types";
-
-import { ReservationRouteParams } from "./types";
 import { useQuery, useMutation, useRequestReplayed } from "utils";
 
 import ReservationDate from "./components/ReservationDate";
 import Desk from "./components/Desk";
+import { DELETE_RESERVATION, GET_RESERVATION } from "./constants";
+import { ReservationRouteParams } from "./types";
 
 const Reservation = () => {
   const history = useHistory();
@@ -63,7 +63,11 @@ const Reservation = () => {
     mutate();
   };
 
-  useRequestReplayed(onDeleteSuccess);
+  useRequestReplayed({
+    cb: onDeleteSuccess,
+    key: `${DELETE_RESERVATION}/${id}`,
+  });
+  useRequestReplayed({ cb: setReservation, key: `${GET_RESERVATION}/${id}` });
 
   return (
     <Flex m="4rem auto" w={{ sm: "100%", lg: "50%" }} direction="column">

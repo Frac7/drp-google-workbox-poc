@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { BackgroundSyncPlugin } from "workbox-background-sync";
 import { registerRoute } from "workbox-routing";
 import {
-  NetworkOnly,
-  // NetworkFirst,
+  // NetworkOnly,
+  NetworkFirst,
   // CacheFirst,
   // CacheOnly,
 } from "workbox-strategies";
@@ -26,13 +26,15 @@ function getBackgroundSyncPlugin(this: ServiceWorkerGlobalScope) {
       // Explicit replay requests
       for (let i = 0; i < entries.length; i++) {
         try {
-          const response = await fetch(entries[i].request);
+          const request = entries[i].request;
+          const response = await fetch(request);
           const jsonData = await response.json();
 
           await queue.shiftRequest();
 
           await sendMessageToClient.call(this, {
             type: REQUEST_REPLAYED,
+            key: `${request.method}-${request.url}`,
             payload: jsonData,
           });
         } catch (error) {
@@ -57,18 +59,14 @@ export function registerRoutes(this: ServiceWorkerGlobalScope) {
   // const handler = new CacheFirst({
   //   plugins,
   // });
-  const handler = new NetworkOnly({
-    plugins,
-  });
-  // const handler = new NetworkFirst({
+  // const handler = new NetworkOnly({
   //   plugins,
   // });
+  const handler = new NetworkFirst({
+    plugins,
+  });
 
-  // registerRoute(
-  //   new RegExp(`${escapedBaseUrl}/bookings\\?month=(\\d)+`),
-  //   handler,
-  //   "GET"
-  // );
+  registerRoute(new RegExp(`${escapedBaseUrl}/bookings/(.)+`), handler, "GET");
   registerRoute(new RegExp(`${escapedBaseUrl}/bookings`), handler, "POST");
   registerRoute(new RegExp(`${escapedBaseUrl}/bookings`), handler, "DELETE");
 }
@@ -77,15 +75,21 @@ export function registerRoutes(this: ServiceWorkerGlobalScope) {
  * Hook for listening to messages from SW related to request replay using the ClientAPI
  * https://developer.mozilla.org/en-US/docs/Web/API/Client/postMessage
  */
-export const useRequestReplayed = (cb: Function) => {
+export const useRequestReplayed = ({
+  cb,
+  key,
+}: {
+  cb: Function;
+  key: string;
+}) => {
   useEffect(() => {
     const listener = (event: MessageEvent) => {
-      if (event?.data?.type === REQUEST_REPLAYED) {
+      if (event?.data?.type === REQUEST_REPLAYED && event?.data?.key === key) {
         cb(event.data.payload);
       }
     };
     navigator?.serviceWorker?.addEventListener("message", listener);
     return () =>
       navigator?.serviceWorker?.removeEventListener("message", listener);
-  }, [cb]);
+  }, [cb, key]);
 };

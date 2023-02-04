@@ -4,7 +4,7 @@
  */
 export function sendMessageToClient(
   this: ServiceWorkerGlobalScope,
-  message: { type: string; payload?: object }
+  message: { type: string; payload?: object, key?: string }
 ) {
   return this.clients
     .matchAll({ includeUncontrolled: true, type: "window" })
