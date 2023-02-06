@@ -9,7 +9,7 @@ import Calendar from "./components/Calendar";
 import { MONTHS } from "./constants";
 import { Reservations as ReservationsType } from "types";
 
-import { /* useRequestReplayed */ useRevalidatedData, useQuery } from "utils";
+import { useRevalidatedData, useQuery } from "utils";
 
 const Reservations = () => {
   const [month, setMonth] = useState<number>(1);
@@ -28,7 +28,6 @@ const Reservations = () => {
     errorMessage: "Errore nel caricamento delle prenotazioni",
   });
 
-  // useRequestReplayed(setReservations);
   useRevalidatedData(setReservations);
 
   return (
@@ -40,11 +39,10 @@ const Reservations = () => {
     >
       <Header month={month} onPrev={onPrev} onNext={onNext} onToday={onToday} />
       <Box my="2rem">
-        {isLoading ? (
-          <Spinner />
-        ) : (
+        {isLoading && <Spinner position="absolute" top="50%" left="50%" />}
+        <Box opacity={isLoading ? "10%" : "100%"}>
           <Calendar month={month} reservations={reservations} />
-        )}
+        </Box>
       </Box>
     </Flex>
   );
