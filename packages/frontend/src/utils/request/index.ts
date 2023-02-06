@@ -27,7 +27,6 @@ const handleRequest = ({
   requestPromise(requestArgs)
     .then((res: Object) => {
       setData(res);
-      setIsLoading(false);
       typeof options?.onSuccess === "function" && options.onSuccess(res);
       if (options?.successMessage) {
         toast({
@@ -38,10 +37,10 @@ const handleRequest = ({
           isClosable: true,
         });
       }
+      setIsLoading(false);
     })
     .catch((err) => {
       setError(err);
-      setIsLoading(false);
       typeof options?.onError === "function" && options.onError(err);
       if (options?.errorMessage) {
         toast({
@@ -52,6 +51,7 @@ const handleRequest = ({
           isClosable: true,
         });
       }
+      setIsLoading(false);
     });
 };
 
