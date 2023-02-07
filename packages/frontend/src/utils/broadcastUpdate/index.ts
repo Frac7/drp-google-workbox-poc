@@ -44,7 +44,9 @@ export const useRevalidatedData = (cb: Function) => {
         const updatedResponse = await cache?.match(updatedURL);
         const updatedJson = await updatedResponse?.json();
 
-        cb(updatedJson);
+        if (updatedJson) {
+          cb(updatedJson);
+        }
       }
     };
     navigator?.serviceWorker?.addEventListener("message", listener);

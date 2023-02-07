@@ -1,16 +1,13 @@
-import React, { ChangeEventHandler } from "react";
+import React from "react";
 
 import { Text, Heading, Box, Input } from "@chakra-ui/react";
+import { ReservationDateProps } from "containers/Book/types";
 
 const ReservationDate = ({
   readonlyDate,
   date,
   onChangeDate,
-}: {
-  readonlyDate?: Date;
-  date?: string;
-  onChangeDate?: ChangeEventHandler<HTMLInputElement>;
-}) => (
+}: ReservationDateProps) => (
   <Box>
     <Heading size="xs" textTransform="uppercase">
       Data

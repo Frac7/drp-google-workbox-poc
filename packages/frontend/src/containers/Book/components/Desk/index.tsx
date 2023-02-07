@@ -1,16 +1,9 @@
-import React, { ChangeEventHandler } from "react";
+import React from "react";
 
 import { Box, Heading, Select, FormControl, FormLabel } from "@chakra-ui/react";
+import { DeskProps } from "containers/Book/types";
 
-const Desk = ({
-  desks,
-  desk,
-  onChangeDesk,
-}: {
-  desks: Array<number>;
-  desk: number;
-  onChangeDesk: ChangeEventHandler<HTMLSelectElement>;
-}) => (
+const Desk = ({ desks, desk, onChangeDesk }: DeskProps) => (
   <Box>
     <FormControl isRequired>
       <FormLabel>
