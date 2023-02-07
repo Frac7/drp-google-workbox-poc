@@ -9,7 +9,7 @@
     "start-all": "lerna run start",
     "build-all": "lerna run build",
     "postinstall": "lerna bootstrap",
-    "serve-fe": "lerna run serve"
+    "serve": "lerna run serve"
   },
   "devDependencies": {
     "lerna": "^6.4.0"
