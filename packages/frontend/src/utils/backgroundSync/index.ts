@@ -22,11 +22,11 @@ function getBackgroundSyncPlugin(this: ServiceWorkerGlobalScope) {
   return new BackgroundSyncPlugin("bookings", {
     // If this callback is not specified, the browser replays the request on its own
     onSync: async ({ queue }) => {
-      let entries = await queue.getAll();
+      const entries = await queue.getAll();
       // Explicit replay requests
-      for (let i = 0; i < entries.length; i++) {
+      for(const entry of entries) {
         try {
-          const request = entries[i].request;
+          const request = entry.request;
           const response = await fetch(request);
           const jsonData = await response.json();
 
