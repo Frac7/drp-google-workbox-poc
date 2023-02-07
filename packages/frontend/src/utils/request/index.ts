@@ -1,6 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import { useToast, CreateToastFnReturn } from "@chakra-ui/react";
 
+type RequestHandlerOptions = {
+  onSuccess?: (args: any) => void;
+  onError?: (error: Error) => void;
+  errorMessage?: string;
+  successMessage?: string;
+};
+
 const handleRequest = ({
   setIsLoading,
   setData,
@@ -16,12 +23,7 @@ const handleRequest = ({
   toast: CreateToastFnReturn;
   requestPromise: (args?: any) => Promise<any>;
   requestArgs?: any;
-  options?: {
-    onSuccess?: (args: any) => void;
-    onError?: (error: Error) => void;
-    errorMessage?: string;
-    successMessage?: string;
-  };
+  options?: RequestHandlerOptions
 }) => {
   setIsLoading(true);
   requestPromise(requestArgs)
@@ -58,12 +60,7 @@ const handleRequest = ({
 export const useQuery = (
   requestPromise: (args?: any) => Promise<any>,
   requestArgs?: any,
-  options?: {
-    onSuccess?: (args: any) => void;
-    onError?: (error: Error) => void;
-    errorMessage?: string;
-    successMessage?: string;
-  }
+  options?: RequestHandlerOptions
 ) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -87,12 +84,7 @@ export const useQuery = (
 export const useMutation = (
   requestPromise: (args?: any) => Promise<any>,
   requestArgs?: any,
-  options?: {
-    onSuccess?: (args: any) => void;
-    onError?: (error: Error) => void;
-    errorMessage?: string;
-    successMessage?: string;
-  }
+  options?: RequestHandlerOptions
 ) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);

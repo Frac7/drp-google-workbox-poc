@@ -1,14 +1,9 @@
 import React from "react";
 
 import { Text, Heading, Box, Skeleton } from "@chakra-ui/react";
+import { ReservationDateProps } from "containers/Reservation/types";
 
-const ReservationDate = ({
-  isLoading,
-  date,
-}: {
-  isLoading: boolean;
-  date: string | undefined;
-}) => (
+const ReservationDate = ({ isLoading, date }: ReservationDateProps) => (
   <Box>
     <Skeleton isLoaded={!isLoading}>
       <Heading size="xs" textTransform="uppercase">
