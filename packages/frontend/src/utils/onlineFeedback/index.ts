@@ -25,10 +25,12 @@ const showOnlineToast = (toast: CreateToastFnReturn, event: Event) => {
     duration: 3000,
     isClosable: true,
   };
+
   if (event?.type === "online") {
     options.status = "info";
     options.title = "Sei online";
   }
+  
   if (event?.type === "offline") {
     options.title = "Sei offline";
     options.status = "warning";
