@@ -13,6 +13,6 @@ This project is a monorepo that uses Lerna. It is composed by the backend, a sim
 ## Use cases
 1. Static assets precaching: static assets are cache when the service worker is in the installation phase and are available also when the app works offline.
 2. Background sync: failed request for getting, creating and deleting a reservation are retried when the app comes online.
-3. Broadcast update: the request that fetches the reservations uses the stale-while-revalidate strategy. When a fresh response is detected, each client is notified, so that it can update displayied data.
+3. Broadcast update: the request that fetches the reservations uses the stale-while-revalidate strategy. When a fresh response is detected, each client is notified, so that it can update displayed data.
 
 
